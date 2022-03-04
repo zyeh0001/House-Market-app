@@ -1,13 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  collection,
-  getDocs,
-  query,
-  orderBy,
-  limit,
-  getDoc,
-} from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, limit } from 'firebase/firestore';
 import { db } from '../firebase.config';
 import Spinner from './Spinner';
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
@@ -35,7 +28,7 @@ function Slider() {
           data: doc.data(),
         });
       });
-      console.log(listings);
+      //   console.log(listings);
       setListings(listings);
       setLoading(false);
     };
@@ -45,6 +38,9 @@ function Slider() {
 
   if (loading) {
     return <Spinner />;
+  }
+  if (listings.length === 0) {
+    return <></>;
   }
   return (
     listings && (
